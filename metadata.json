@@ -1,0 +1,7 @@
+{
+  "name": "Fawn & Fable: Toddler Wonder & Parent Guide",
+  "description": "An interactive, safe learning space with colorful animal characters guiding toddlers through early literacy, math, writing, and social-emotional skills, featuring an AI parenting companion based on Fawn.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
