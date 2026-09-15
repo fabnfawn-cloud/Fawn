@@ -1,6 +1,6 @@
 {
   "name": "Fawn & Fable: Toddler Wonder & Parent Guide",
-  "description": "An interactive, safe learning space with colorful animal characters guiding toddlers through early literacy, math, writing, and social-emotional skills, featuring an AI parenting companion based on Fawn.",
+  "description": "An interactive 3D castle adventure game featuring Fawn the deer knight and her animal knight companions, teaching math, shapes, colors, and early skills in a GameCube/N64-inspired realm, with an AI parenting sanctuary.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

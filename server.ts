@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import path from 'path';
-import { createServer as createViteServer } from 'vite';
 import { handleParentAiQuery, handleLessonPlanGeneration } from './src/server/geminiHandler';
 
 async function startServer() {
@@ -10,11 +9,12 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API routes FIRST
+  // Health check
   app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', service: 'Fawn & Fable API' });
   });
 
+  // Parent AI Advice endpoint (proxies to Gemini with Fawn & Fable context)
   app.post('/api/parent-ai', async (req, res) => {
     try {
       const result = await handleParentAiQuery(req.body);
@@ -25,6 +25,7 @@ async function startServer() {
     }
   });
 
+  // Lesson plan generator endpoint
   app.post('/api/lesson-plan', async (req, res) => {
     try {
       const result = await handleLessonPlanGeneration(req.body);
@@ -35,8 +36,12 @@ async function startServer() {
     }
   });
 
+  // Serve public/assets directly
+  app.use('/assets', express.static(path.join(process.cwd(), 'public/assets')));
+
   // Vite middleware for development / Static file serving for production
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
@@ -56,4 +61,3 @@ async function startServer() {
 }
 
 startServer();
-
